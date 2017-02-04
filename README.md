@@ -1,0 +1,2 @@
+# ParallaxRecyclerView
+一个带视差折叠效果的RecyclerView

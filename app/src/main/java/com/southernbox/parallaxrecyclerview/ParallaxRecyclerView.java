@@ -36,7 +36,6 @@ public class ParallaxRecyclerView extends RecyclerView {
         });
 
         addOnScrollListener(new OnScrollListener() {
-
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -59,7 +58,6 @@ public class ParallaxRecyclerView extends RecyclerView {
                         float currentY = view.getTranslationY();
                         if (currentY > 0) {
                             view.setTranslationY(0);
-                            view.invalidate();
                         }
                     }
                 }

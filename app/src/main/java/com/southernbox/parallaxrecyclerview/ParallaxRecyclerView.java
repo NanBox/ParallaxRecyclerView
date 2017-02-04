@@ -1,6 +1,7 @@
 package com.southernbox.parallaxrecyclerview;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,14 +19,20 @@ public class ParallaxRecyclerView extends RecyclerView {
         this(context, null);
     }
 
-    public ParallaxRecyclerView(Context context, @Nullable AttributeSet attrs) {
+    public ParallaxRecyclerView(final Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
-        addItemDecoration(new OverlapDecoration(context));
 
         if (isInEditMode()) {
             return;
         }
+
+        addItemDecoration(new ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                outRect.bottom = -dp2px(context, 10);
+            }
+        });
 
         addOnScrollListener(new OnScrollListener() {
 
@@ -46,41 +53,45 @@ public class ParallaxRecyclerView extends RecyclerView {
 
                 float tempSpeed;
 
-                // 第一个控件固定在顶部(超过屏幕一半时固定一半在顶部, 后续控件层叠上来
-                View view1 = recyclerView.getLayoutManager().findViewByPosition(firstVisible);
-                if (view1 == null) {
+                View firstView = recyclerView.getLayoutManager().findViewByPosition(firstVisible);
+                if (firstView == null) {
                     return;
                 }
-                tempSpeed = view1.getTop();
-                int viewHeight = view1.getHeight();
+                tempSpeed = firstView.getTop();
+                int viewHeight = firstView.getHeight();
                 int recyclerViewHeight = recyclerView.getHeight() / 2;
                 int offset = recyclerViewHeight < viewHeight ? recyclerViewHeight - viewHeight : 0;
 
                 if (tempSpeed < offset) {
                     lastTransitionY = -(tempSpeed - offset);
-                    view1.setTranslationY(lastTransitionY / 1.9f);
-                    view1.invalidate();
+                    firstView.setTranslationY(lastTransitionY / 1.9f);
+                    firstView.invalidate();
                 } else if (lastTransitionY > 0) {
                     lastTransitionY = 0;
-                    float currentY = view1.getTranslationY();
+                    float currentY = firstView.getTranslationY();
                     if (currentY > 0) {
-                        view1.setTranslationY(0);
+                        firstView.setTranslationY(0);
                     }
                 }
 
                 // 重置控件, 不然偏移可能出现偏差
                 for (int i = firstVisible + 1; i <= (firstVisible + visibleCount); i++) {
-                    view1 = recyclerView.getLayoutManager().findViewByPosition(i);
-                    if (view1 != null) {
-                        float currentY = view1.getTranslationY();
+                    firstView = recyclerView.getLayoutManager().findViewByPosition(i);
+                    if (firstView != null) {
+                        float currentY = firstView.getTranslationY();
                         if (currentY > 0) {
-                            view1.setTranslationY(0);
-                            view1.invalidate();
+                            firstView.setTranslationY(0);
+                            firstView.invalidate();
                         }
                     }
                 }
             }
         });
+    }
+
+    private int dp2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
     }
 
 }

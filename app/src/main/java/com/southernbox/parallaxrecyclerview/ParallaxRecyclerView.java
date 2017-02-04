@@ -58,7 +58,7 @@ public class ParallaxRecyclerView extends RecyclerView {
                             elevation += 5;
                         }
                         float currentY = view.getTranslationY();
-                        if (currentY > 0) {
+                        if (i != firstPosition && currentY > 0) {
                             view.setTranslationY(0);
                         }
                     }

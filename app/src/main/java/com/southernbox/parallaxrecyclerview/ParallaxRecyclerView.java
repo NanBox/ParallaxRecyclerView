@@ -3,6 +3,7 @@ package com.southernbox.parallaxrecyclerview;
 import android.content.Context;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -36,8 +37,6 @@ public class ParallaxRecyclerView extends RecyclerView {
 
         addOnScrollListener(new OnScrollListener() {
 
-            private float lastTransitionY;
-
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -47,44 +46,27 @@ public class ParallaxRecyclerView extends RecyclerView {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-
-                int firstVisible = layoutManager.findFirstVisibleItemPosition();
-                int visibleCount = Math.abs(firstVisible - layoutManager.findLastVisibleItemPosition());
-
-                float tempSpeed;
-
-                View firstView = recyclerView.getLayoutManager().findViewByPosition(firstVisible);
-                if (firstView == null) {
-                    return;
-                }
-                tempSpeed = firstView.getTop();
-                int viewHeight = firstView.getHeight();
-                int recyclerViewHeight = recyclerView.getHeight() / 2;
-                int offset = recyclerViewHeight < viewHeight ? recyclerViewHeight - viewHeight : 0;
-
-                if (tempSpeed < offset) {
-                    lastTransitionY = -(tempSpeed - offset);
-                    firstView.setTranslationY(lastTransitionY / 1.9f);
-                    firstView.invalidate();
-                } else if (lastTransitionY > 0) {
-                    lastTransitionY = 0;
-                    float currentY = firstView.getTranslationY();
-                    if (currentY > 0) {
-                        firstView.setTranslationY(0);
-                    }
-                }
-
-                // 重置控件, 不然偏移可能出现偏差
-                for (int i = firstVisible + 1; i <= (firstVisible + visibleCount); i++) {
-                    firstView = recyclerView.getLayoutManager().findViewByPosition(i);
-                    if (firstView != null) {
-                        float currentY = firstView.getTranslationY();
+                int firstPosition = layoutManager.findFirstVisibleItemPosition();
+                int lastPosition = layoutManager.findLastVisibleItemPosition();
+                int visibleCount = Math.abs(firstPosition - lastPosition);
+                //重置控件的位置及高度
+                int elevation = 1;
+                for (int i = firstPosition; i <= (firstPosition + visibleCount) + 1; i++) {
+                    CardView view = (CardView) layoutManager.findViewByPosition(i);
+                    if (view != null) {
+                        view.setCardElevation(dp2px(context, elevation));
+                        elevation += 5;
+                        float currentY = view.getTranslationY();
                         if (currentY > 0) {
-                            firstView.setTranslationY(0);
-                            firstView.invalidate();
+                            view.setTranslationY(0);
+                            view.invalidate();
                         }
                     }
                 }
+
+                View firstView = layoutManager.findViewByPosition(firstPosition);
+                float firstViewTop = firstView.getTop();
+                firstView.setTranslationY(-firstViewTop / 2.0f);
             }
         });
     }

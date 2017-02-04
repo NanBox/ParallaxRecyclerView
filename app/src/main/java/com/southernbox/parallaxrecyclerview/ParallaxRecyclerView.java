@@ -51,10 +51,12 @@ public class ParallaxRecyclerView extends RecyclerView {
                 //重置控件的位置及高度
                 int elevation = 1;
                 for (int i = firstPosition; i <= (firstPosition + visibleCount) + 1; i++) {
-                    CardView view = (CardView) layoutManager.findViewByPosition(i);
+                    View view = layoutManager.findViewByPosition(i);
                     if (view != null) {
-                        view.setCardElevation(dp2px(context, elevation));
-                        elevation += 5;
+                        if (view instanceof CardView) {
+                            ((CardView) view).setCardElevation(dp2px(context, elevation));
+                            elevation += 5;
+                        }
                         float currentY = view.getTranslationY();
                         if (currentY > 0) {
                             view.setTranslationY(0);

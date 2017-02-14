@@ -27,6 +27,8 @@ public class ParallaxRecyclerView extends RecyclerView {
             return;
         }
 
+        setLayoutManager(new LinearLayoutManager(context));
+
         addItemDecoration(new ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, State state) {
@@ -50,7 +52,7 @@ public class ParallaxRecyclerView extends RecyclerView {
                 int visibleCount = Math.abs(firstPosition - lastPosition);
                 //重置控件的位置及高度
                 int elevation = 1;
-                for (int i = firstPosition; i <= (firstPosition + visibleCount) + 1; i++) {
+                for (int i = firstPosition - 1; i <= (firstPosition + visibleCount) + 1; i++) {
                     View view = layoutManager.findViewByPosition(i);
                     if (view != null) {
                         if (view instanceof CardView) {
@@ -58,7 +60,7 @@ public class ParallaxRecyclerView extends RecyclerView {
                             elevation += 5;
                         }
                         float currentY = view.getTranslationY();
-                        if (i != firstPosition && currentY > 0) {
+                        if (i > firstPosition && currentY > 0) {
                             view.setTranslationY(0);
                         }
                     }

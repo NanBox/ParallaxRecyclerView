@@ -49,7 +49,7 @@ public class ParallaxRecyclerView extends RecyclerView {
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int firstPosition = layoutManager.findFirstVisibleItemPosition();
                 int lastPosition = layoutManager.findLastVisibleItemPosition();
-                int visibleCount = Math.abs(firstPosition - lastPosition);
+                int visibleCount = lastPosition - firstPosition;
                 //重置控件的位置及高度
                 int elevation = 1;
                 for (int i = firstPosition - 1; i <= (firstPosition + visibleCount) + 1; i++) {
@@ -59,8 +59,8 @@ public class ParallaxRecyclerView extends RecyclerView {
                             ((CardView) view).setCardElevation(dp2px(context, elevation));
                             elevation += 5;
                         }
-                        float currentY = view.getTranslationY();
-                        if (i > firstPosition && currentY > 0) {
+                        float translationY = view.getTranslationY();
+                        if (i > firstPosition && translationY != 0) {
                             view.setTranslationY(0);
                         }
                     }

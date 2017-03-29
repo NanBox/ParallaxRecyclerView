@@ -72,5 +72,3 @@ if (i > firstPosition && translationY != 0) {
 ```
 
 这样就完成了一个带有简单折叠效果的 RecyclerView 了，妥妥的。
-
-[源码地址](https://github.com/SouthernBox/ParallaxRecyclerView)

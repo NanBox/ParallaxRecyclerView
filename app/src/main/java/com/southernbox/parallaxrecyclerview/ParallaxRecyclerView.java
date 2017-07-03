@@ -33,7 +33,13 @@ public class ParallaxRecyclerView extends RecyclerView {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, State state) {
                 super.getItemOffsets(outRect, view, parent, state);
-                outRect.bottom = -dp2px(context, 10);
+                //获取当前项的下标
+                final int currentPosition = parent.getChildLayoutPosition(view);
+                //获取最后一项的下标
+                final int lastPosition = state.getItemCount() - 1;
+                if (currentPosition != lastPosition) {
+                    outRect.bottom = -dp2px(context, 10);
+                }
             }
         });
 

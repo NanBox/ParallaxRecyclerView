@@ -1,4 +1,4 @@
-package com.southernbox.parallaxrecyclerview;
+package com.southernbox.parallaxrecyclerview.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv);
+        RecyclerView recyclerView = findViewById(R.id.rv);
         recyclerView.setAdapter(new MainAdapter(this));
     }
 

@@ -1,4 +1,4 @@
-package com.southernbox.parallaxrecyclerview;
+package com.southernbox.parallaxrecyclerview.sample;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -1,3 +1,7 @@
+![](https://img.shields.io/badge/platform-android-green.svg)
+[![](https://img.shields.io/badge/API-15+-green.svg?style=flat)](https://android-arsenal.com/api?level=15)
+![](https://img.shields.io/badge/language-java-orange.svg)
+
 ![](/images/ParallaxRecyclerView.gif)
 
 总结一下这个列表的特点，就是以下三点：

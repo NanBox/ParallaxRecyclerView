@@ -7,7 +7,7 @@
 
 # ParallaxRecyclerView
 
-An RecyclerView with parallax folding effect.
+A RecyclerView with parallax folding effect.
 
 ![](/images/ParallaxRecyclerView.gif)
 

@@ -73,8 +73,10 @@ public class ParallaxRecyclerView extends RecyclerView {
                 }
 
                 View firstView = layoutManager.findViewByPosition(firstPosition);
-                float firstViewTop = firstView.getTop();
-                firstView.setTranslationY(-firstViewTop / 2.0f);
+                if (firstView != null) {
+                    float firstViewTop = firstView.getTop();
+                    firstView.setTranslationY(-firstViewTop / 2.0f);
+                }
             }
         });
     }

@@ -16,7 +16,7 @@ A RecyclerView with parallax folding effect.
 
 ```javascript
 dependencies {
-    compile 'com.southernbox:ParallaxRecyclerView:1.0.0'
+    compile 'com.southernbox:ParallaxRecyclerView:1.0.1'
 }
 ```
 **In the layout file, replace the RecyclerView with ParallaxRecyclerView:**

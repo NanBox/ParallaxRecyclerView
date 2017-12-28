@@ -32,6 +32,6 @@ publish {
     userOrg = 'southernbox'
     groupId = 'com.southernbox'
     artifactId = 'ParallaxRecyclerView'
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     website = 'https://github.com/SouthernBox/ParallaxRecyclerView'
 }

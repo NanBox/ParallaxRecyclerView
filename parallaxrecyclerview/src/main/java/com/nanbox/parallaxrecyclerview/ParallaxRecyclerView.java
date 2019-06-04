@@ -1,19 +1,20 @@
-package com.southernbox.parallaxrecyclerview;
+package com.nanbox.parallaxrecyclerview;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * Created by SouthernBox on 2017/2/4.
- * 带视差折叠效果的列表控件
- */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * 带视差折叠效果的列表控件
+ * Created by NanBox on 2017/2/4.
+ */
 public class ParallaxRecyclerView extends RecyclerView {
 
     public ParallaxRecyclerView(Context context) {
@@ -31,7 +32,10 @@ public class ParallaxRecyclerView extends RecyclerView {
 
         addItemDecoration(new ItemDecoration() {
             @Override
-            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, State state) {
+            public void getItemOffsets(@NonNull Rect outRect,
+                                       @NonNull View view,
+                                       @NonNull RecyclerView parent,
+                                       @NonNull State state) {
                 super.getItemOffsets(outRect, view, parent, state);
                 //获取当前项的下标
                 final int currentPosition = parent.getChildLayoutPosition(view);
@@ -45,14 +49,17 @@ public class ParallaxRecyclerView extends RecyclerView {
 
         addOnScrollListener(new OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                if (layoutManager == null) {
+                    return;
+                }
                 int firstPosition = layoutManager.findFirstVisibleItemPosition();
                 int lastPosition = layoutManager.findLastVisibleItemPosition();
                 int visibleCount = lastPosition - firstPosition;

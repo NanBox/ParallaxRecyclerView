@@ -1,14 +1,14 @@
-package com.southernbox.parallaxrecyclerview.sample;
+package com.nanbox.parallaxrecyclerview.sample;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * Created by SouthernBox on 2017/2/4.
  * 主页面
+ * Created by NanBox on 2017/2/4.
  */
-
 public class MainActivity extends AppCompatActivity {
 
     @Override

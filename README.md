@@ -1,4 +1,4 @@
-[![](https://travis-ci.org/SouthernBox/ParallaxRecyclerView.svg?branch=master)](https://travis-ci.org/SouthernBox/ParallaxRecyclerView)
+[![](https://travis-ci.org/NanBox/ParallaxRecyclerView.svg?branch=master)](https://travis-ci.org/NanBox/ParallaxRecyclerView)
 [![](https://api.bintray.com/packages/southernbox/maven/ParallaxRecyclerView/images/download.svg)](https://bintray.com/southernbox/maven/ParallaxRecyclerView/_latestVersion)
 [![](https://img.shields.io/badge/Android%20Arsenal-ParallaxRecyclerView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6399)
 [![](https://img.shields.io/badge/API-15+-green.svg?style=flat)](https://android-arsenal.com/api?level=15)
@@ -16,13 +16,13 @@ A RecyclerView with parallax folding effect.
 
 ```javascript
 dependencies {
-    compile 'com.southernbox:ParallaxRecyclerView:1.0.1'
+    implementation 'com.nanbox:ParallaxRecyclerView:1.1.0'
 }
 ```
 **In the layout file, replace the RecyclerView with ParallaxRecyclerView:**
 
 ```xml
-<com.southernbox.parallaxrecyclerview.ParallaxRecyclerView
+<com.nanbox.parallaxrecyclerview.ParallaxRecyclerView
     android:id="@+id/rv"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />

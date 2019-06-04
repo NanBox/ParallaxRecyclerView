@@ -2,15 +2,15 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 28
+        versionCode 120190604
+        versionName "1.1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -24,14 +24,15 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.android.support:cardview-v7:26.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
 
 publish {
     userOrg = 'southernbox'
-    groupId = 'com.southernbox'
+    groupId = 'com.nanbox'
     artifactId = 'ParallaxRecyclerView'
-    publishVersion = '1.0.1'
-    website = 'https://github.com/SouthernBox/ParallaxRecyclerView'
+    publishVersion = '1.1.0'
+    desc = 'A RecyclerView with parallax folding effect.'
+    website = 'https://github.com/NanBox/ParallaxRecyclerView'
 }

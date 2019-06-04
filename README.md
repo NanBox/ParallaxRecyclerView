@@ -1,8 +1,6 @@
-[![](https://travis-ci.org/NanBox/ParallaxRecyclerView.svg?branch=master)](https://travis-ci.org/NanBox/ParallaxRecyclerView)
 [![](https://api.bintray.com/packages/southernbox/maven/ParallaxRecyclerView/images/download.svg)](https://bintray.com/southernbox/maven/ParallaxRecyclerView/_latestVersion)
 [![](https://img.shields.io/badge/Android%20Arsenal-ParallaxRecyclerView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6399)
 [![](https://img.shields.io/badge/API-15+-green.svg?style=flat)](https://android-arsenal.com/api?level=15)
-[![](https://badge.juejin.im/entry/58dca9212f301e0062f8cca3/likes.svg?style=flat)](https://juejin.im/entry/58dca9212f301e0062f8cca3/detail)
 
 # ParallaxRecyclerView
 
